@@ -1,7 +1,11 @@
-import Header from "./components/layout/Header.componet";
+import Test from "./components/testcomponent";
 
 const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Test />
+    </>
+  );
 };
 
 export default App;
