@@ -10,7 +10,7 @@ const Test = () => {
         </div>
         <div className="flex flex-grow">
           <Sidebar />
-          <h1 className="bg-blue">hello world</h1>
+          <h1 className="bg-indigo-300 flex-grow">hello world</h1>
         </div>
       </div>
     </>

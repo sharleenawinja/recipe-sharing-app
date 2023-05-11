@@ -73,7 +73,7 @@ const Header = () => {
               className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm w-full rounded-lg pl-10 pr-3 py-2"
             />
           </div>
-          <div className="md:space-x-10 justify-end items-center ml-auto flex space-x-3 mr-10">
+          <div className="md:space-x-10 justify-end items-center ml-auto flex space-x-6 sm:mr-6 md:mr-10">
             {/* clicking notification icon should take you to a page with all the notifications */}
             <NotificationBell />
             <div className="justify-center items-center flex flex-col relative">
