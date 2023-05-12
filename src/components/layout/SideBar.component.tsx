@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 interface SingleCategoryProps {
   category: string;
 }
@@ -41,7 +42,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={`h-full flex flex-col bg-white`}>
+    <nav className={`h-full flex flex-col bg-white`}>
       <div className={`flex-col pt-5 flex space-y-4 md:block flex-grow`}>
         <div>
           <a
@@ -141,11 +142,8 @@ const Sidebar = () => {
             ))}
           </div>
         </div>
-        <div>
-          <a
-            href="#"
-            className="text-sm rounded-lg text-gray-900 px-4 py-2.5 flex hover:bg-gray-200 font-medium"
-          >
+        <NavLink to={"/tips"}>
+          <div className="text-sm rounded-lg text-gray-900 px-4 py-2.5 flex hover:bg-gray-200 font-medium">
             <span>
               <svg
                 className="flex-shrink-0 w-5 h-5 mr-4"
@@ -158,10 +156,10 @@ const Sidebar = () => {
               </svg>
             </span>
             <span className={`hidden md:block`}>Tips & Tricks</span>
-          </a>
-        </div>
+          </div>
+        </NavLink>
       </div>
-    </div>
+    </nav>
   );
 };
 

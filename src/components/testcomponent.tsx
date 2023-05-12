@@ -4,6 +4,7 @@ import Sidebar from "./layout/SideBar.component";
 const Test = () => {
   return (
     <>
+      {/* things to add in homepage: user's uploads, recipe of the week */}
       <div className="h-screen flex flex-col">
         <div>
           <Navbar />
