@@ -16,11 +16,11 @@ const NotificationBell = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4
                   0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6
                   0H9"
@@ -44,26 +44,13 @@ const Header = () => {
     <>
       <div className="w-full border-b-2 border-gray-200">
         <div className="bg-white h-16 justify-between items-center mx-auto px-4 flex">
-          <div
-            style={{
-              fontFamily: "Arial, sans-serif",
-              fontSize: "10px",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-              textAlign: "center",
-              padding: "10px",
-              background: "#fff",
-              border: "2px solid black",
-              borderRadius: "10px",
-              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-            }}
-          >
+          <div className="h-16 w-21 font-bold text-xs uppercase tracking-wide text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md">
             yummy yummy
             <br />
             in my tummy
           </div>
-          <div className="lg:block mr-auto ml-40 hidden relative max-w-xs">
+          <div></div>
+          <div className="block mr-auto ml-40 relative max-w-xs">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <BiSearchAlt className="text-gray-400" />
             </div>
