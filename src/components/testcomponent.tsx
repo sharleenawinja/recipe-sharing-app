@@ -1,4 +1,4 @@
-import Header from "./layout/Header.componet";
+import Navbar from "./layout/Navbar.componet";
 import Sidebar from "./layout/SideBar.component";
 
 const Test = () => {
@@ -6,7 +6,7 @@ const Test = () => {
     <>
       <div className="h-screen flex flex-col">
         <div>
-          <Header />
+          <Navbar />
         </div>
         <div className="flex flex-grow">
           <Sidebar />

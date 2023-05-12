@@ -39,18 +39,15 @@ const NotificationBell = () => {
   );
 };
 
-const Header = () => {
+const Navbar = () => {
   return (
     <>
       <div className="w-full border-b-2 border-gray-200">
         <div className="bg-white h-16 justify-between items-center mx-auto px-4 flex">
-          <div className="h-16 w-21 font-bold text-xs uppercase tracking-wide text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md">
-            yummy yummy
-            <br />
-            in my tummy
+          <div className="h-16 w-24 font-bold text-xs uppercase tracking-wide text-left md:text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md">
+            yummy yummy in my tummy
           </div>
-          <div></div>
-          <div className="block mr-auto ml-40 relative max-w-xs">
+          <div className="block ml-4 md:ml-40 relative max-w-xs">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <BiSearchAlt className="text-gray-400" />
             </div>
@@ -65,11 +62,11 @@ const Header = () => {
             <NotificationBell />
             <div className="justify-center items-center flex flex-col relative">
               <BiUserCircle className="h-9 w-9 rounded-full" />
-              <p>User</p>
+              <p className="hidden md:block">User</p>
             </div>
-            <div>
+            <div className="justify-center items-center flex flex-col relative">
               <MdLogout className="h-9 w-7" />
-              <p>Log Out</p>
+              <p className="hidden md:block">Log Out</p>
             </div>
           </div>
         </div>
@@ -78,4 +75,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
