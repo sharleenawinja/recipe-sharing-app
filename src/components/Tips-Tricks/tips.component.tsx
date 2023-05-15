@@ -1,7 +1,51 @@
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
+import { SetStateAction, useEffect, useState } from "react";
 
 const Tips = () => {
+  const [heading, setHeading] = useState("");
+  const [mainText, setMainText] = useState("");
+  const [photoLink, setPhotoLink] = useState("");
+  const [post, setPost] = useState({ heading: "", content: "", link: "" });
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleChangeHeading = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setHeading(e.target.value);
+  };
+
+  const handleChangeMainText = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setMainText(e.target.value);
+  };
+
+  const handleChangePhotoLink = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPhotoLink(e.target.value);
+  };
+
+  const handleSubmitForm = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const newPost = {
+      heading: heading,
+      content: mainText,
+      link: photoLink,
+    };
+    setPost(newPost);
+    console.log(post);
+  };
+
+  const handleOnClick = () => {
+    setIsVisible(!isVisible);
+  };
+
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
   return (
     <>
       <div className="h-screen flex flex-col">
@@ -11,6 +55,36 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300">
+            <div className="flex justify-center">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 mx-auto"
+                onClick={handleOnClick}
+              >
+                Add new tips/tricks
+              </button>
+            </div>
+            {isVisible && (
+              <form onSubmit={handleSubmitForm}>
+                <input
+                  placeholder="Heading"
+                  value={heading}
+                  onChange={handleChangeHeading}
+                />
+                <textarea
+                  placeholder="Main Text"
+                  value={mainText}
+                  onChange={handleChangeMainText}
+                />
+                <input
+                  placeholder="Photo Link"
+                  value={photoLink}
+                  onChange={handleChangePhotoLink}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            )}
+          </div>
+          {/* <div className="flex-grow bg-indigo-300">
             <div className="ml-2 mt-2">
               <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
@@ -53,7 +127,7 @@ const Tips = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
