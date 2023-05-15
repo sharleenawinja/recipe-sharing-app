@@ -1,6 +1,9 @@
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
 import { SetStateAction, useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Tips = () => {
   const [heading, setHeading] = useState("");
@@ -8,6 +11,14 @@ const Tips = () => {
   const [photoLink, setPhotoLink] = useState("");
   const [post, setPost] = useState({ heading: "", content: "", link: "" });
   const [isVisible, setIsVisible] = useState(false);
+
+  const settings = {
+    dots: true, // Show pagination dots
+    infinite: true, // Loop through the slides
+    speed: 500, // Transition speed in milliseconds
+    slidesToShow: 1, // Number of slides to show at once
+    slidesToScroll: 1, // Number of slides to scroll per click
+  };
 
   const handleChangeHeading = (e: {
     target: { value: SetStateAction<string> };
@@ -118,45 +129,54 @@ const Tips = () => {
               </form>
             )}
             <div className="ml-2 mt-2">
-              <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                  <img
-                    className="rounded-t-lg"
-                    src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                    alt=""
-                  />
-                </a>
-                <div className="p-5">
-                  <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      Store spices in the right location.
-                    </h5>
-                  </a>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    To prolong the life of your spices, keep them in a cool,
-                    dark place. Don’t store them on top of the stove, as heat
-                    and humidity can alter their flavor.
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Read more
-                    <svg
-                      aria-hidden="true"
-                      className="w-4 h-4 ml-2 -mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
+              <div className="max-w-md mx-auto">
+                <Slider {...settings}>
+                  <div className="px-4">
+                    <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                      <a href="#">
+                        <img
+                          className="rounded-t-lg w-full h-48 object-cover"
+                          src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                          alt=""
+                        />
+                      </a>
+                      <div className="p-5">
+                        <a href="#">
+                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Store spices in the right location.
+                          </h5>
+                        </a>
+                        <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+                          To prolong the life of your spices, keep them in a
+                          cool, dark place. Don’t store them on top of the
+                          stove, as heat and humidity can alter their flavor.
+                        </p>
+                        <a
+                          href="#"
+                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                          Read more
+                          <svg
+                            aria-hidden="true"
+                            className="w-4 h-4 ml-2 -mr-1"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="px-4">
+                    <h2>Slide 3</h2>
+                  </div>
+                </Slider>
               </div>
             </div>
           </div>
