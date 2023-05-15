@@ -36,6 +36,8 @@ const Tips = () => {
     };
     setPost(newPost);
     console.log(post);
+    setHeading("");
+    setPhotoLink("");
   };
 
   const handleOnClick = () => {
@@ -54,7 +56,7 @@ const Tips = () => {
         </div>
         <div className="flex flex-grow">
           <Sidebar />
-          <div className="flex-grow bg-indigo-300">
+          <div className="flex-grow bg-indigo-300 space-y-4">
             <div className="flex justify-center">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 mx-auto"
@@ -63,28 +65,58 @@ const Tips = () => {
                 Add new tips/tricks
               </button>
             </div>
+
             {isVisible && (
-              <form onSubmit={handleSubmitForm}>
+              <form
+                onSubmit={handleSubmitForm}
+                className="flex flex-col space-y-4 w-1/3 mx-auto"
+              >
+                <label
+                  htmlFor="heading"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Add heading here
+                </label>
                 <input
+                  id="heading"
                   placeholder="Heading"
                   value={heading}
                   onChange={handleChangeHeading}
+                  className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
                 />
+                <label
+                  htmlFor="details"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Details
+                </label>
                 <textarea
-                  placeholder="Main Text"
-                  value={mainText}
+                  id="details"
+                  rows={4}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Add details here..."
                   onChange={handleChangeMainText}
-                />
+                ></textarea>
+                <label
+                  htmlFor="details"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Add photo link here
+                </label>
                 <input
                   placeholder="Photo Link"
                   value={photoLink}
                   onChange={handleChangePhotoLink}
+                  className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
                 />
-                <button type="submit">Submit</button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Submit
+                </button>
               </form>
             )}
-          </div>
-          {/* <div className="flex-grow bg-indigo-300">
             <div className="ml-2 mt-2">
               <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
@@ -127,7 +159,7 @@ const Tips = () => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </>
