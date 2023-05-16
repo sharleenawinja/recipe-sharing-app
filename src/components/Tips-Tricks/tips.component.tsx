@@ -68,6 +68,7 @@ const Tips = () => {
     setHeading("");
     setPhotoLink("");
     setDetails("");
+    setIsFormVisible(!isFormVisible);
   };
 
   const toggleForm = () => {
@@ -97,59 +98,63 @@ const Tips = () => {
             </div>
 
             {isFormVisible && (
-              <form
-                className="flex flex-col space-y-4 w-1/3 mx-auto"
-                onSubmit={handleSubmitForm}
-              >
-                <label
-                  htmlFor="heading"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Heading <span className="text-red-500">*</span>
-                </label>
-                <input
-                  required
-                  id="heading"
-                  placeholder="Add heading here.."
-                  className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
-                  value={heading}
-                  onChange={handleChangeHeading}
-                />
-                <label
-                  htmlFor="details"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Details <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  required
-                  id="details"
-                  rows={4}
-                  placeholder="Add details here..."
-                  className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                  value={details}
-                  onChange={handleChangeMainText}
-                ></textarea>
-                <label
-                  htmlFor="photolink"
-                  className="block text-sm font-medium text-gray-900"
-                >
-                  Photo link
-                </label>
-                <input
-                  id="photolink"
-                  placeholder="Add photo link here.."
-                  className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
-                  value={photoLink}
-                  onChange={handleChangePhotoLink}
-                />
-                <button
-                  type="submit"
-                  className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                >
-                  Submit
-                </button>
-              </form>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 min-h-screen">
+                <div className="w-1/3 mx-auto bg-white p-4 rounded-lg">
+                  <form
+                    className="flex flex-col space-y-4"
+                    onSubmit={handleSubmitForm}
+                  >
+                    <label
+                      htmlFor="heading"
+                      className="block text-sm font-medium text-gray-900"
+                    >
+                      Heading <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      required
+                      id="heading"
+                      placeholder="Add heading here.."
+                      className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
+                      value={heading}
+                      onChange={handleChangeHeading}
+                    />
+                    <label
+                      htmlFor="details"
+                      className="block text-sm font-medium text-gray-900"
+                    >
+                      Details <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      required
+                      id="details"
+                      rows={4}
+                      placeholder="Add details here..."
+                      className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                      value={details}
+                      onChange={handleChangeMainText}
+                    ></textarea>
+                    <label
+                      htmlFor="photolink"
+                      className="block text-sm font-medium text-gray-900"
+                    >
+                      Photo link
+                    </label>
+                    <input
+                      id="photolink"
+                      placeholder="Add photo link here.."
+                      className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
+                      value={photoLink}
+                      onChange={handleChangePhotoLink}
+                    />
+                    <button
+                      type="submit"
+                      className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
             )}
             <div className="ml-2">
               <div className="max-w-md mx-auto">
