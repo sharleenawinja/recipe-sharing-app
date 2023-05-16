@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
-import { useNavigate } from "react-router-dom";
 
 const Tips = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -14,8 +13,6 @@ const Tips = () => {
     link: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
-
-  const navigate = useNavigate();
 
   const ItemsPerPage = 6;
 
@@ -117,18 +114,6 @@ const Tips = () => {
     setCurrentPage(page);
   };
 
-  const handleChangeHeading = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHeading(e.target.value);
-  };
-
-  const handleChangeMainText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDetails(e.target.value);
-  };
-
-  const handleChangePhotoLink = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhotoLink(e.target.value);
-  };
-
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const addedTrick = {
@@ -153,7 +138,79 @@ const Tips = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col">
+      {isFormVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
+          <div className="w-1/3 mx-auto bg-white p-4 rounded-lg">
+            <form
+              className="flex flex-col space-y-4"
+              onSubmit={handleSubmitForm}
+            >
+              <label
+                htmlFor="heading"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Heading <span className="text-red-500">*</span>
+              </label>
+              <input
+                required
+                id="heading"
+                placeholder="Add heading here.."
+                className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+              />
+              <label
+                htmlFor="details"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Details <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                required
+                id="details"
+                rows={4}
+                placeholder="Add details here..."
+                className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
+              ></textarea>
+              <label
+                htmlFor="photolink"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Photo link
+              </label>
+              <input
+                id="photolink"
+                placeholder="Add photo link here.."
+                className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
+                value={photoLink}
+                onChange={(e) => setPhotoLink(e.target.value)}
+              />
+              <div className="flex justify-between">
+                <button
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => {
+                    setIsFormVisible(false);
+                    setHeading("");
+                    setDetails("");
+                    setPhotoLink("");
+                  }}
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      <div className={`h-screen flex flex-col ${isFormVisible ? "" : ""}`}>
         <div>
           <Navbar />
         </div>
@@ -168,79 +225,8 @@ const Tips = () => {
                 Add new tips/tricks
               </button>
             </div>
-            {/* clean up code, add button to close modal without adding a blog post, create a reusable conponent for pagination, create reusable component for the cards in the grid, change background color when form is visible */}
-            {isFormVisible && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
-                <div className="w-1/3 mx-auto bg-white p-4 rounded-lg">
-                  <form
-                    className="flex flex-col space-y-4"
-                    onSubmit={handleSubmitForm}
-                  >
-                    <label
-                      htmlFor="heading"
-                      className="block text-sm font-medium text-gray-900"
-                    >
-                      Heading <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      required
-                      id="heading"
-                      placeholder="Add heading here.."
-                      className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
-                      value={heading}
-                      onChange={handleChangeHeading}
-                    />
-                    <label
-                      htmlFor="details"
-                      className="block text-sm font-medium text-gray-900"
-                    >
-                      Details <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      required
-                      id="details"
-                      rows={4}
-                      placeholder="Add details here..."
-                      className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                      value={details}
-                      onChange={handleChangeMainText}
-                    ></textarea>
-                    <label
-                      htmlFor="photolink"
-                      className="block text-sm font-medium text-gray-900"
-                    >
-                      Photo link
-                    </label>
-                    <input
-                      id="photolink"
-                      placeholder="Add photo link here.."
-                      className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm rounded-lg py-2 px-4"
-                      value={photoLink}
-                      onChange={handleChangePhotoLink}
-                    />
-                    <div className="flex justify-between">
-                      <button
-                        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => {
-                          setIsFormVisible(false);
-                          setHeading("");
-                          setDetails("");
-                          setPhotoLink("");
-                        }}
-                      >
-                        Back
-                      </button>
-                      <button
-                        type="submit"
-                        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            )}
+            {/* clean up code, create a reusable conponent for pagination, create reusable component for the cards in the grid, change background color when form is visible */}
+
             <div className="ml-2 mr-2">
               <div className="w-full mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
