@@ -12,6 +12,12 @@ const Tips = () => {
     details: "",
     link: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ItemsPerPage = 6;
+
+  const startIndex = (currentPage - 1) * ItemsPerPage;
+  const endIndex = startIndex + ItemsPerPage;
 
   const currentItems = [
     {
@@ -50,7 +56,63 @@ const Tips = () => {
         " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
       link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
+    {
+      heading: "Store spices in the right location.",
+      details:
+        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
+      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    },
   ];
+
+  const itemsToShow = currentItems.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(currentItems.length / ItemsPerPage);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const handleChangeHeading = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHeading(e.target.value);
@@ -166,7 +228,7 @@ const Tips = () => {
             <div className="ml-2 mr-2">
               <div className="w-full mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {currentItems.map((current, index) => (
+                  {itemsToShow.map((current, index) => (
                     <div
                       className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                       key={index}
@@ -209,6 +271,28 @@ const Tips = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="flex justify-center mt-4">
+                  {totalPages && (
+                    <nav>
+                      <ul className="pagination">
+                        {Array.from(
+                          { length: totalPages },
+                          (_, i) => i + 1
+                        ).map((page) => (
+                          <li
+                            key={page}
+                            className={`inline-block px-3 py-1 mx-1 text-white rounded-lg cursor-pointer bg-blue-700 hover:bg-blue-800 focus:outline-none focus:bg-blue-700 focus:text-white ${
+                              page === currentPage ? "bg-blue-900 " : ""
+                            }`}
+                            onClick={() => goToPage(page)}
+                          >
+                            {page}
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
+                  )}
                 </div>
               </div>
             </div>
