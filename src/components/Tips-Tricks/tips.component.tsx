@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
+import { useNavigate } from "react-router-dom";
 
 const Tips = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -13,6 +14,8 @@ const Tips = () => {
     link: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
+
+  const navigate = useNavigate();
 
   const ItemsPerPage = 6;
 
@@ -165,7 +168,7 @@ const Tips = () => {
                 Add new tips/tricks
               </button>
             </div>
-
+            {/* clean up code, add button to close modal without adding a blog post, create a reusable conponent for pagination, create reusable component for the cards in the grid, change background color when form is visible */}
             {isFormVisible && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
                 <div className="w-1/3 mx-auto bg-white p-4 rounded-lg">
@@ -215,12 +218,25 @@ const Tips = () => {
                       value={photoLink}
                       onChange={handleChangePhotoLink}
                     />
-                    <button
-                      type="submit"
-                      className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                    >
-                      Submit
-                    </button>
+                    <div className="flex justify-between">
+                      <button
+                        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          setIsFormVisible(false);
+                          setHeading("");
+                          setDetails("");
+                          setPhotoLink("");
+                        }}
+                      >
+                        Back
+                      </button>
+                      <button
+                        type="submit"
+                        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                      >
+                        Submit
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
