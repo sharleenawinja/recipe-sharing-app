@@ -69,6 +69,7 @@ const Tips = () => {
   // get all the possible answers
 
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [heading, setHeading] = useState("");
   const [details, setDetails] = useState("");
   const [photoLink, setPhotoLink] = useState("");
@@ -77,7 +78,6 @@ const Tips = () => {
     details: "",
     link: "",
   });
-  const [currentPage, setCurrentPage] = useState(1);
 
   const ItemsPerPage = 6;
   const startIndex = (currentPage - 1) * ItemsPerPage;
@@ -100,10 +100,6 @@ const Tips = () => {
     setHeading("");
     setPhotoLink("");
     setDetails("");
-    setIsFormVisible(!isFormVisible);
-  };
-
-  const toggleForm = () => {
     setIsFormVisible(!isFormVisible);
   };
 
@@ -192,34 +188,16 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300 space-y-4">
-            <div className="flex justify-center">
-              <button
-                className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mt-2 mx-auto flex items-center space-x-1"
-                onClick={toggleForm}
-              >
-                <span className="text-base">Add</span>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  height="1.5em"
-                  width="1.5em"
-                  className="flex-shrink-0"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
-                </svg>
-              </button>
-            </div>
-            {/* clean up code, create reusable component for the cards in the grid, find a better place to place add new tips/tricks button eg at the bottom next to pagination*/}
+            {/* clean up code*/}
 
-            <div className="ml-2 mr-2">
+            <div className="ml-2 mr-2 mt-4">
               <div className="w-full mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {itemsToShow.map((current, index) => (
                     <SingleArticle index={index} current={current} />
                   ))}
                 </div>
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-between items-center mt-4 w-2/3 mx-auto">
                   {totalPages && (
                     <Pagination
                       totalPages={totalPages}
@@ -227,6 +205,22 @@ const Tips = () => {
                       onPageChange={goToPage}
                     />
                   )}
+                  <button
+                    className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded flex items-center space-x-1"
+                    onClick={() => setIsFormVisible(!isFormVisible)}
+                  >
+                    <span className="text-base">Add</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      height="1.5em"
+                      width="1.5em"
+                      className="flex-shrink-0"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
