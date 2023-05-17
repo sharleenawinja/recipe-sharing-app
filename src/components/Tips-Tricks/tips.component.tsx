@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
+import { currentItems } from "../../data/data";
+import Pagination from "../layout/paginations";
 
 const Tips = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -18,93 +20,6 @@ const Tips = () => {
 
   const startIndex = (currentPage - 1) * ItemsPerPage;
   const endIndex = startIndex + ItemsPerPage;
-
-  const currentItems = [
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      heading: "Store spices in the right location.",
-      details:
-        " To prolong the life of your spices, keep them in a cool, dark place. Don't store them on top of the stove, as heat and humidity can alter their flavor.",
-      link: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-  ];
 
   const itemsToShow = currentItems.slice(startIndex, endIndex);
 
@@ -210,7 +125,7 @@ const Tips = () => {
           </div>
         </div>
       )}
-      <div className={`h-screen flex flex-col ${isFormVisible ? "" : ""}`}>
+      <div className={`h-screen flex flex-col`}>
         <div>
           <Navbar />
         </div>
@@ -219,13 +134,23 @@ const Tips = () => {
           <div className="flex-grow bg-indigo-300 space-y-4">
             <div className="flex justify-center">
               <button
-                className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mt-2 mx-auto"
+                className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mt-2 mx-auto flex items-center space-x-1"
                 onClick={toggleForm}
               >
-                Add new tips/tricks
+                <span className="text-base">Add</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  height="1.5em"
+                  width="1.5em"
+                  className="flex-shrink-0"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+                </svg>
               </button>
             </div>
-            {/* clean up code, create a reusable conponent for pagination, create reusable component for the cards in the grid, change background color when form is visible */}
+            {/* clean up code, create a reusable conponent for pagination, create reusable component for the cards in the grid, find a better place to place add new tips/tricks button eg at the bottom next to pagination, increase height of the form to cover either the complete screen or 2 thirds of the screen */}
 
             <div className="ml-2 mr-2">
               <div className="w-full mx-auto">
@@ -276,24 +201,11 @@ const Tips = () => {
                 </div>
                 <div className="flex justify-center mt-4">
                   {totalPages && (
-                    <nav>
-                      <ul className="pagination">
-                        {Array.from(
-                          { length: totalPages },
-                          (_, i) => i + 1
-                        ).map((page) => (
-                          <li
-                            key={page}
-                            className={`inline-block px-3 py-1 mx-1 text-white rounded-lg cursor-pointer bg-blue-700 hover:bg-blue-800 focus:outline-none focus:bg-blue-700 focus:text-white ${
-                              page === currentPage ? "bg-blue-900 " : ""
-                            }`}
-                            onClick={() => goToPage(page)}
-                          >
-                            {page}
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
+                    <Pagination
+                      totalPages={totalPages}
+                      currentPage={currentPage}
+                      onPageChange={goToPage}
+                    />
                   )}
                 </div>
               </div>
