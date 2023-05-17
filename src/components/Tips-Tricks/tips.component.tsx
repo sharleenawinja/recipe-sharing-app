@@ -5,6 +5,11 @@ import { currentItems } from "../../data/data";
 import Pagination from "../layout/paginations";
 
 const Tips = () => {
+  // confirm forms used for tb prophylaxis medication  =.QA
+  // which encounter types are tied to those forms  => encounter type table etl
+  // confirm questions and possible answers and their concepts
+  // get all the possible answers
+
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [heading, setHeading] = useState("");
   const [details, setDetails] = useState("");
@@ -17,12 +22,9 @@ const Tips = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const ItemsPerPage = 6;
-
   const startIndex = (currentPage - 1) * ItemsPerPage;
   const endIndex = startIndex + ItemsPerPage;
-
   const itemsToShow = currentItems.slice(startIndex, endIndex);
-
   const totalPages = Math.ceil(currentItems.length / ItemsPerPage);
 
   const goToPage = (page: number) => {
@@ -55,7 +57,7 @@ const Tips = () => {
     <>
       {isFormVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
-          <div className="w-1/3 mx-auto bg-white p-4 rounded-lg">
+          <div className="w-1/3 mx-auto bg-white p-4 rounded-lg h-2/3">
             <form
               className="flex flex-col space-y-4"
               onSubmit={handleSubmitForm}
@@ -85,7 +87,7 @@ const Tips = () => {
                 id="details"
                 rows={4}
                 placeholder="Add details here..."
-                className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 h-72"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
               ></textarea>
@@ -150,7 +152,7 @@ const Tips = () => {
                 </svg>
               </button>
             </div>
-            {/* clean up code, create a reusable conponent for pagination, create reusable component for the cards in the grid, find a better place to place add new tips/tricks button eg at the bottom next to pagination, increase height of the form to cover either the complete screen or 2 thirds of the screen */}
+            {/* clean up code, create reusable component for the cards in the grid, find a better place to place add new tips/tricks button eg at the bottom next to pagination, increase height of the form to cover either the complete screen or 2 thirds of the screen */}
 
             <div className="ml-2 mr-2">
               <div className="w-full mx-auto">
