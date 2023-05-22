@@ -1,4 +1,4 @@
-export const currentItems = [
+export const currentArticles = [
   {
     heading: "Store spices in the right location.",
     details:

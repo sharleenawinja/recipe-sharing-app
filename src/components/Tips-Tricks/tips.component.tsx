@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar.componet";
 import Sidebar from "../layout/SideBar.component";
-import { currentItems } from "../../data/data";
+import { currentArticles } from "../../data/data";
 import Pagination from "../layout/paginations";
 
 interface SingleArticleProps {
@@ -118,6 +118,7 @@ const Tips = () => {
   const [heading, setHeading] = useState("");
   const [details, setDetails] = useState("");
   const [photoLink, setPhotoLink] = useState("");
+  const [currentItems, setCurrentItems] = useState(currentArticles);
   const [newTrick, setNewTrick] = useState({
     heading: "",
     details: "",
@@ -134,17 +135,37 @@ const Tips = () => {
     setCurrentPage(page);
   };
 
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const verifyPhotoLink = async (photoLink: string) => {
+    try {
+      const response = await fetch(photoLink);
+      // response.ok && response.headers.get('content-type').startsWith('image/') => cleaner but throws typescript error about headers possibly being undefined
+      if (response.ok) {
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.startsWith("image/")) {
+          return true;
+        }
+      }
+    } catch (error) {
+      console.error("Invalid photo link:", error);
+    }
+    return false;
+  };
+
+  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const isPhotoLinkValid = await verifyPhotoLink(photoLink);
+    console.log("link", isPhotoLinkValid);
+
     const addedTrick = {
       heading: heading,
       details: details,
-      link: photoLink,
+      link: isPhotoLinkValid
+        ? photoLink
+        : "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     };
-
-    currentItems.unshift(addedTrick);
-
     setNewTrick(addedTrick);
+
     setHeading("");
     setPhotoLink("");
     setDetails("");
@@ -152,7 +173,10 @@ const Tips = () => {
   };
 
   useEffect(() => {
-    console.log(newTrick);
+    if (newTrick.heading && newTrick.details && newTrick.link) {
+      console.log(newTrick);
+      setCurrentItems((prevItems) => [newTrick, ...prevItems]);
+    }
   }, [newTrick]);
 
   return (
@@ -236,7 +260,7 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300 space-y-4">
-            {/* clean up code, functionality to add a new article/trick, verify photo link, default image to display if no photo link is provided*/}
+            {/* clean up code, default image to display if no photo link is provided*/}
 
             <div className="ml-4 mr-4 mt-4">
               <div className="w-full mx-auto">
