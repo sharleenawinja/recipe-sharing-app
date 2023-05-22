@@ -28,19 +28,15 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
       return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
           <div className="w-1/3 mx-auto bg-white p-4 rounded-lg h-2/3">
-            <a href="#">
-              <img
-                className="rounded-t-lg w-full h-48 object-cover"
-                src={current.link}
-                alt=""
-              />
-            </a>
+            <img
+              className="rounded-t-lg w-full h-48 object-cover"
+              src={current.link}
+              alt=""
+            />
             <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {current.heading}
-                </h5>
-              </a>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {current.heading}
+              </h5>
               <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
                 {current.details}
               </p>
@@ -68,7 +64,6 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
         </div>
       );
     } else {
-      // Display only the first sentence
       const firstSentence = current.details.split(".")[0];
       return (
         <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
@@ -83,19 +78,15 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
       className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       key={index}
     >
-      <a href="#">
-        <img
-          className="rounded-t-lg w-full h-48 object-cover"
-          src={current.link}
-          alt=""
-        />
-      </a>
+      <img
+        className="rounded-t-lg w-full h-48 object-cover"
+        src={current.link}
+        alt=""
+      />
       <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {current.heading}
-          </h5>
-        </a>
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {current.heading}
+        </h5>
         {renderDetails()}
         <button
           onClick={toggleModal}
@@ -150,6 +141,9 @@ const Tips = () => {
       details: details,
       link: photoLink,
     };
+
+    currentItems.unshift(addedTrick);
+
     setNewTrick(addedTrick);
     setHeading("");
     setPhotoLink("");
@@ -242,7 +236,7 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300 space-y-4">
-            {/* clean up code, functionality for read more button (preferably use modal), functionality to add a new article/trick, verify photo link, default image to display if no photo link is provided*/}
+            {/* clean up code, functionality to add a new article/trick, verify photo link, default image to display if no photo link is provided*/}
 
             <div className="ml-4 mr-4 mt-4">
               <div className="w-full mx-auto">
