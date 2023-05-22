@@ -17,6 +17,67 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
   index,
   current,
 }: SingleArticleProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const renderDetails = () => {
+    if (isModalOpen) {
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 h-screen">
+          <div className="w-1/3 mx-auto bg-white p-4 rounded-lg h-2/3">
+            <a href="#">
+              <img
+                className="rounded-t-lg w-full h-48 object-cover"
+                src={current.link}
+                alt=""
+              />
+            </a>
+            <div className="p-5">
+              <a href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {current.heading}
+                </h5>
+              </a>
+              <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+                {current.details}
+              </p>
+              <button
+                onClick={toggleModal}
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+              >
+                Show less
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 ml-2 -mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      // Display only the first sentence
+      const firstSentence = current.details.split(".")[0];
+      return (
+        <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
+          {firstSentence}
+        </p>
+      );
+    }
+  };
+
   return (
     <div
       className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -35,11 +96,9 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
             {current.heading}
           </h5>
         </a>
-        <p className="mb-3 text-sm text-gray-700 dark:text-gray-400">
-          {current.details}
-        </p>
-        <a
-          href="#"
+        {renderDetails()}
+        <button
+          onClick={toggleModal}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Read more
@@ -56,18 +115,13 @@ const SingleArticle: React.FC<SingleArticleProps> = ({
               clipRule="evenodd"
             ></path>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );
 };
 
 const Tips = () => {
-  // confirm forms used for tb prophylaxis medication  =.QA
-  // which encounter types are tied to those forms  => encounter type table etl
-  // confirm questions and possible answers and their concepts
-  // get all the possible answers
-
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [heading, setHeading] = useState("");
@@ -188,11 +242,11 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300 space-y-4">
-            {/* clean up code*/}
+            {/* clean up code, functionality for read more button (preferably use modal), functionality to add a new article/trick, verify photo link, default image to display if no photo link is provided*/}
 
-            <div className="ml-2 mr-2 mt-4">
+            <div className="ml-4 mr-4 mt-4">
               <div className="w-full mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-10">
                   {itemsToShow.map((current, index) => (
                     <SingleArticle index={index} current={current} />
                   ))}
