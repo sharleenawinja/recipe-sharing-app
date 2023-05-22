@@ -155,14 +155,13 @@ const Tips = () => {
     e.preventDefault();
 
     const isPhotoLinkValid = await verifyPhotoLink(photoLink);
-    console.log("link", isPhotoLinkValid);
+    const defaultLink =
+      "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
 
     const addedTrick = {
       heading: heading,
       details: details,
-      link: isPhotoLinkValid
-        ? photoLink
-        : "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      link: isPhotoLinkValid ? photoLink : defaultLink,
     };
     setNewTrick(addedTrick);
 
@@ -260,7 +259,7 @@ const Tips = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow bg-indigo-300 space-y-4">
-            {/* clean up code, default image to display if no photo link is provided*/}
+            {/*deleting an article, check if it is the same user that uploaded it*/}
 
             <div className="ml-4 mr-4 mt-4">
               <div className="w-full mx-auto">
