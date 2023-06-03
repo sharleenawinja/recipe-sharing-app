@@ -1,37 +1,46 @@
 import { useState } from "react";
-// import { LoginAPI } from "../../api/AuthAPI";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase.config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const LoginComponent = () => {
-  const [username, setUsername] = useState("");
+const LogIn = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username === "admin" && password === "password") {
-      setLoggedIn(true);
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        console.log(userCredentials);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Invalid credentials. Please try again.");
+      });
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow">
-        <h2 className="text-2xl font-bold mb-6">Login</h2>
+        <h2 className="text-2xl font-bold mb-6">Log in to your account</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
               htmlFor="username"
               className="block font-medium text-gray-700 mb-2"
             >
-              Username
+              Email
             </label>
             <input
               type="text"
               id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border-gray-300 border rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -46,6 +55,7 @@ const LoginComponent = () => {
             <input
               type="password"
               id="password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border-gray-300 border rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -62,9 +72,16 @@ const LoginComponent = () => {
         {loggedIn && (
           <p className="mt-4 text-green-500">Logged in successfully!</p>
         )}
+        <p className="mt-4 text-gray-600">Don't have an account?</p>
+        <button
+          onClick={() => navigate("/signup")}
+          className="mt-2 text-blue-500 underline hover:text-blue-700 focus:outline-none"
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   );
 };
 
-export default LoginComponent;
+export default LogIn;
