@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import AuthDetails from "./AuthDetails";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -70,7 +71,10 @@ const LogIn = () => {
           </button>
         </form>
         {loggedIn && (
-          <p className="mt-4 text-green-500">Logged in successfully!</p>
+          <>
+            <p className="mt-4 text-green-500">Logged in successfully!</p>
+            <AuthDetails />
+          </>
         )}
         <p className="mt-4 text-gray-600">Don't have an account?</p>
         <button
