@@ -30,12 +30,12 @@ const SignUp = () => {
           backgroundImage: `url('src/assets/login.jpg')`,
         }}
       />
-      <div className="relative flex justify-between items-center min-h-screen">
-        <div className="w-1/2 p-8 text-white ml-8">
-          <h1 className="text-8xl font-bold mb-8  tracking-wider">
+      <div className="relative flex flex-col md:flex-row justify-between items-center min-h-screen">
+        <div className="w-full md:w-1/2 p-8 text-white ml-8 mx-auto md:ml-8">
+          <h1 className="text-4xl md:text-8xl font-bold mb-8  tracking-wider">
             Yummy Yummy in My Tummy
           </h1>
-          <p className="text-xl tracking-widest leading-loose mb-8 font-bold">
+          <p className="text-base md:text-xl tracking-widest md:leading-loose mb-8 font-bold">
             At Yummy Yummy in My Tummy, we celebrate the joy of food. From
             mouthwatering delicacies to comforting home-cooked meals, we have it
             all. Join our food-loving community and discover the flavors that
@@ -43,8 +43,8 @@ const SignUp = () => {
             culinary journey with us!
           </p>
         </div>
-        <div className="bg-black opacity-90 w-full md:w-1/3 p-8 rounded-md mr-8">
-          <h2 className="text-4xl text-white font-bold mb-8">
+        <div className="bg-black opacity-90 w-full md:w-1/3 p-8 rounded-md mx-auto md:mr-8 mt-8 md:mt-0">
+          <h2 className="text-2xl md:text-4xl text-white font-bold mb-8">
             Sign Up To Join Our Community!
           </h2>
           <form onSubmit={handleSignUp}>
