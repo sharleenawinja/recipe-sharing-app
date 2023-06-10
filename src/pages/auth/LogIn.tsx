@@ -17,6 +17,7 @@ const LogIn = () => {
       .then((userCredentials) => {
         console.log(userCredentials);
         setLoggedIn(true);
+        navigate("/tips");
       })
       .catch((error) => {
         console.error(error);
@@ -25,64 +26,86 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow">
-        <h2 className="text-2xl font-bold mb-6">Log in to your account</h2>
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block font-medium text-gray-700 mb-2"
+    <div className="relative min-h-screen">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('src/assets/login.jpg')`,
+        }}
+      />
+      <div className="relative flex justify-between items-center min-h-screen">
+        <div className="w-1/2 p-8 text-white ml-8">
+          <h1 className="text-8xl font-bold mb-8  tracking-wider">
+            Yummy Yummy in My Tummy
+          </h1>
+          <p className="text-xl tracking-widest leading-loose mb-8 font-bold">
+            At Yummy Yummy in My Tummy, we celebrate the joy of food. From
+            mouthwatering delicacies to comforting home-cooked meals, we have it
+            all. Join our food-loving community and discover the flavors that
+            tantalize your taste buds. Get ready to embark on a delightful
+            culinary journey with us!
+          </p>
+        </div>
+        <div className="bg-black opacity-90 w-full md:w-1/3 p-8 rounded-md mr-8">
+          <h2 className="text-4xl font-bold mb-8">Welcome Back!</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-6">
+              <label
+                htmlFor="username"
+                className="block text-white font-bold mb-2"
+              >
+                Email
+              </label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="password"
+                className="block text-white font-bold mb-2"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
             >
-              Email
-            </label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border-gray-300 border rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block font-medium text-gray-700 mb-2"
+              Log In
+            </button>
+          </form>
+          {loggedIn && (
+            <>
+              <p className="mt-4 text-green-500">Logged in successfully!</p>
+              <AuthDetails />
+            </>
+          )}
+          <div className="flex items-center justify-center mt-8">
+            <p className="text-gray-600">Don't have an account?</p>
+            <button
+              onClick={() => navigate("/signup")}
+              className="ml-2 text-blue-500 underline hover:text-blue-700 focus:outline-none"
             >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-gray-300 border rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
+              Sign Up
+            </button>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-          >
-            Log In
-          </button>
-        </form>
-        {loggedIn && (
-          <>
-            <p className="mt-4 text-green-500">Logged in successfully!</p>
-            <AuthDetails />
-          </>
-        )}
-        <p className="mt-4 text-gray-600">Don't have an account?</p>
-        <button
-          onClick={() => navigate("/signup")}
-          className="mt-2 text-blue-500 underline hover:text-blue-700 focus:outline-none"
-        >
-          Sign Up
-        </button>
+        </div>
       </div>
     </div>
   );
