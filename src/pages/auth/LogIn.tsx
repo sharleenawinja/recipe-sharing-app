@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase.config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import AuthDetails from "./AuthDetails";
 
 const LogIn = () => {
@@ -14,6 +18,20 @@ const LogIn = () => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        console.log(userCredentials);
+        setLoggedIn(true);
+        navigate("/tips");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Invalid credentials. Please try again.");
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
       .then((userCredentials) => {
         console.log(userCredentials);
         setLoggedIn(true);
@@ -54,7 +72,7 @@ const LogIn = () => {
                 htmlFor="username"
                 className="block text-white font-bold mb-2"
               >
-                Email
+                Username
               </label>
               <input
                 type="text"
@@ -90,12 +108,12 @@ const LogIn = () => {
               Log In
             </button>
           </form>
-          {loggedIn && (
-            <>
-              <p className="mt-4 text-green-500">Logged in successfully!</p>
-              <AuthDetails />
-            </>
-          )}
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-700 focus:outline-none focus:bg-red-700"
+          >
+            Sign In with Google
+          </button>
           <div className="flex items-center justify-center mt-8">
             <p className="text-gray-600">Don't have an account?</p>
             <button
