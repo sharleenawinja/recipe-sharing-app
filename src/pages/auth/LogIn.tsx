@@ -65,18 +65,18 @@ const LogIn = () => {
           </p>
         </div>
         <div className="bg-black opacity-90 w-full md:w-1/3 p-8 rounded-md mr-8">
-          <h2 className="text-4xl font-bold mb-8">Welcome Back!</h2>
+          <h2 className="text-4xl text-white font-bold mb-8">Welcome Back!</h2>
           <form onSubmit={handleLogin}>
             <div className="mb-6">
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block text-white font-bold mb-2"
               >
-                Username
+                Email
               </label>
               <input
                 type="text"
-                id="username"
+                id="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +112,7 @@ const LogIn = () => {
             onClick={handleGoogleSignIn}
             className="w-full bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-700 focus:outline-none focus:bg-red-700"
           >
-            Sign In with Google
+            Sign In With Google
           </button>
           <div className="flex items-center justify-center mt-8">
             <p className="text-gray-600">Don't have an account?</p>
