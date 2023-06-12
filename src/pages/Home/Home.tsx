@@ -6,6 +6,7 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import Navbar from "../../components/layout/Navbar.component";
+import Postcard from "../../components/postcard/Postcard";
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
         <Navbar />
       </div>
       <div className="flex flex-grow">
-        <div className="bg-indigo-300 flex-grow">
+        <div className="bg-indigo-300 flex-grow flex flex-col space-y-4">
           <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3">
             <div className="flex items-center space-x-4">
               <BiUser className="text-gray-500 text-3xl" />
@@ -43,6 +44,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <Postcard />
         </div>
       </div>
     </div>
