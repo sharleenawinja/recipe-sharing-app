@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase.config";
 import {
@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import AuthDetails from "./AuthDetails";
+import { Context } from "../../Context";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -14,13 +14,21 @@ const LogIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
+  const context = useContext(Context);
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
-        console.log(userCredentials);
+        const { user } = userCredentials;
+        const { email } = user;
+        const username = email?.substring(0, email.indexOf("@"));
+        console.log("username", username);
+        console.log("context before", context);
+        context.setLoggedIn(true);
+        console.log("context after", context);
         setLoggedIn(true);
+
         navigate("/tips");
       })
       .catch((error) => {
@@ -33,7 +41,11 @@ const LogIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredentials) => {
-        console.log(userCredentials);
+        const { user } = userCredentials;
+        console.log("User has a display name:", user.displayName);
+        const { displayName } = user;
+        const username = displayName?.substring(0, displayName.indexOf(" "));
+        console.log("username", username);
         setLoggedIn(true);
         navigate("/tips");
       })
