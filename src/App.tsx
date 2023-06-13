@@ -5,10 +5,15 @@ import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./ProtectedRoutes";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const App = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { loggedIn } = useSelector((state: any) => state.loggedIn);
+  const { authenticated } = useSelector((state: any) => state);
+
+  useEffect(() => {
+    console.log("loggedin in app", authenticated.loggedIn);
+  });
 
   return (
     <>
@@ -22,7 +27,7 @@ const App = () => {
           <Route
             path="/tips"
             element={
-              <ProtectedRoute isSignedIn={loggedIn}>
+              <ProtectedRoute isSignedIn={authenticated.loggedIn}>
                 <Tips />
               </ProtectedRoute>
             }
@@ -30,7 +35,7 @@ const App = () => {
           <Route
             path="/home"
             element={
-              <ProtectedRoute isSignedIn={loggedIn}>
+              <ProtectedRoute isSignedIn={authenticated.loggedIn}>
                 <Home />
               </ProtectedRoute>
             }

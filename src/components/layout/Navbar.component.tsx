@@ -8,9 +8,13 @@ import { MdLogout } from "react-icons/md";
 import { TbFriends } from "react-icons/tb";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { authenticated } = useSelector((state: any) => state);
 
   return (
     <>
@@ -73,7 +77,9 @@ const Navbar = () => {
             </div>
             <div className="justify-center items-center flex flex-col relative">
               <BiUserCircle className="h-9 w-9 rounded-full" />
-              <p className="hidden md:block">User</p>
+              <p className="hidden md:block">
+                {authenticated.user ? authenticated.user : "User"}
+              </p>
             </div>
             <div className="justify-center items-center flex flex-col relative">
               <MdLogout className="h-9 w-7" />

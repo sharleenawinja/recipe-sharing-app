@@ -8,10 +8,12 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { authenticated } from "../../redux/loggedIn";
+import ErrorToast from "../../components/layout/toasts/ErrorToast";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,14 +25,19 @@ const LogIn = () => {
         const { user } = userCredentials;
         const { email } = user;
         const username = email?.substring(0, email.indexOf("@"));
-        console.log("username", username);
 
-        dispatch(authenticated(true));
-        navigate("/tips");
+        const payload = {
+          loggedIn: true,
+          user: username,
+        };
+
+        dispatch(authenticated(payload));
+        navigate("/home");
       })
       .catch((error) => {
         console.error(error);
-        alert("Invalid credentials. Please try again.");
+        setError(true);
+        // alert("Invalid credentials. Please try again.");
       });
   };
 
@@ -43,11 +50,16 @@ const LogIn = () => {
         const { displayName } = user;
         const username = displayName?.substring(0, displayName.indexOf(" "));
         console.log("username", username);
-        dispatch(authenticated(true));
-        navigate("/tips");
+        const payload = {
+          loggedIn: true,
+          user: username,
+        };
+        dispatch(authenticated(payload));
+        navigate("/home");
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
         alert("Invalid credentials. Please try again.");
       });
   };
@@ -125,6 +137,12 @@ const LogIn = () => {
           >
             Sign In With Google
           </button>
+          {error && (
+            <ErrorToast
+              message="Invalid credentials. Please try again."
+              handleOnClick={() => setError(false)}
+            />
+          )}
           <div className="flex items-center justify-center mt-8">
             <p className="text-gray-600">Don't have an account?</p>
             <button
