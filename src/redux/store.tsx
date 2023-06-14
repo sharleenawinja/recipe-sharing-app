@@ -1,14 +1,9 @@
-import { Reducer, configureStore } from "@reduxjs/toolkit";
-import authenticatedDetailsReducer from "./loggedIn";
-
-export interface Authenticated {
-  loggedIn: boolean;
-  user: string;
-}
+import { configureStore } from "@reduxjs/toolkit";
+import authenticatedDetailsReducer from "./authentication";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default configureStore({
   reducer: {
-    authenticated: authenticatedDetailsReducer as Reducer<Authenticated>,
+    authentication: authenticatedDetailsReducer,
   },
 });

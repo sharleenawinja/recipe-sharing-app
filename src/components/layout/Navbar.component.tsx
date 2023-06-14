@@ -8,13 +8,31 @@ import { MdLogout } from "react-icons/md";
 import { TbFriends } from "react-icons/tb";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase.config";
+import { useNavigate } from "react-router-dom";
+import { loggedOut } from "../../redux/authentication";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { authenticated } = useSelector((state: any) => state);
+  const { authentication } = useSelector((state: any) => state);
+
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(loggedOut());
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
@@ -82,10 +100,13 @@ const Navbar = () => {
             <div className="justify-center items-center flex flex-col relative">
               <BiUserCircle className="h-9 w-9 rounded-full" />
               <p className="hidden md:block">
-                {authenticated.user ? authenticated.user : "User"}
+                {authentication.user ? authentication.user : "User"}
               </p>
             </div>
-            <button className="justify-center items-center flex flex-col relative">
+            <button
+              className="justify-center items-center flex flex-col relative"
+              onClick={handleLogOut}
+            >
               <MdLogout className="h-9 w-7" />
               <p className="hidden lg:block">Log Out</p>
             </button>

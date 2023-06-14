@@ -4,16 +4,20 @@ export const authenticationDetailsSlice = createSlice({
   name: "authenticationDetails",
   initialState: {
     loggedIn: false,
-    user: "user",
+    user: "User",
   },
   reducers: {
     authenticated: (state, action) => {
-      const { loggedIn, user } = action.payload;
-      state.loggedIn = loggedIn;
+      const { user } = action.payload;
+      state.loggedIn = true;
       state.user = user;
+    },
+    loggedOut: (state) => {
+      state.loggedIn = false;
+      state.user = "User";
     },
   },
 });
 
-export const { authenticated } = authenticationDetailsSlice.actions;
+export const { authenticated, loggedOut } = authenticationDetailsSlice.actions;
 export default authenticationDetailsSlice.reducer;
