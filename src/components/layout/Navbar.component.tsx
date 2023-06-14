@@ -19,15 +19,19 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full border-b-2 border-gray-200">
-        <div className="bg-white h-16 items-center mx-auto px-4 flex">
-          <div className="h-16 w-24 font-bold text-xs uppercase tracking-wide text-left md:text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md">
-            yummy yummy in my tummy
+        <div className="bg-white h-16 items-center mx-auto px-4 flex space-x-4 lg:space-x-80">
+          <div className="h-16 w-28 font-bold text-xs uppercase tracking-wide text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md flex justify-center items-center">
+            <h1>
+              <span>yummy yummy</span>{" "}
+              <span className="hidden lg:block">in my tummy</span>
+            </h1>
           </div>
-          <div className="block ml-1 xl:ml-40 relative max-w-xs ">
+
+          <div className="block ml-1 xl:ml-40 relative max-w-xs">
             <div className="flex items-center ">
-              <BiSearchAlt className="text-black lg:text-gray-400 absolute left-3 top-2.5 h-5 w-5" />
+              <BiSearchAlt className="text-black  absolute left-3 top-2.5 h-5 w-5" />
               <input
-                placeholder="Search for a recipe..."
+                placeholder="Search..."
                 type="search"
                 className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm w-full rounded-lg pl-10 pr-3 py-2"
                 onClick={() => setIsModalOpen(true)}
@@ -81,10 +85,10 @@ const Navbar = () => {
                 {authenticated.user ? authenticated.user : "User"}
               </p>
             </div>
-            <div className="justify-center items-center flex flex-col relative">
+            <button className="justify-center items-center flex flex-col relative">
               <MdLogout className="h-9 w-7" />
               <p className="hidden lg:block">Log Out</p>
-            </div>
+            </button>
           </div>
         </div>
       </div>
