@@ -7,12 +7,13 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { authenticated } from "../../redux/loggedIn";
+import { authenticated } from "../../redux/authentication";
 import ErrorToast from "../../components/layout/toasts/ErrorToast";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const LogIn = () => {
         const username = email?.substring(0, email.indexOf("@"));
 
         const payload = {
-          loggedIn: true,
           user: username,
         };
 
@@ -36,6 +36,18 @@ const LogIn = () => {
       })
       .catch((error) => {
         console.error(error);
+        if (
+          error.code === "auth/invalid-email" ||
+          error.code === "auth/wrong-password"
+        ) {
+          setErrorMessage("Invalid email or password. Please try again.");
+        } else if (error.code === "auth/network-request-failed") {
+          setErrorMessage(
+            "A network error occurred. Please check your internet connection and try again."
+          );
+        } else {
+          setErrorMessage("An unknown error occurred. Please try again later.");
+        }
         setError(true);
       });
   };
@@ -49,7 +61,6 @@ const LogIn = () => {
         const username = displayName?.substring(0, displayName.indexOf(" "));
 
         const payload = {
-          loggedIn: true,
           user: username,
         };
 
@@ -58,6 +69,18 @@ const LogIn = () => {
       })
       .catch((error) => {
         console.error(error);
+        if (
+          error.code === "auth/invalid-email" ||
+          error.code === "auth/wrong-password"
+        ) {
+          setErrorMessage("Invalid email or password. Please try again.");
+        } else if (error.code === "auth/network-request-failed") {
+          setErrorMessage(
+            "A network error occurred. Please check your internet connection and try again."
+          );
+        } else {
+          setErrorMessage("An unknown error occurred. Please try again later.");
+        }
         setError(true);
       });
   };
@@ -137,7 +160,7 @@ const LogIn = () => {
           </button>
           {error && (
             <ErrorToast
-              message="Invalid credentials. Please try again."
+              message={errorMessage}
               handleOnClick={() => setError(false)}
             />
           )}

@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { authenticated } = useSelector((state: any) => state);
+  const { authentication } = useSelector((state: any) => state);
 
   return (
     <>
@@ -28,7 +28,7 @@ const App = () => {
           <Route
             path="/tips"
             element={
-              <ProtectedRoute isSignedIn={authenticated.loggedIn}>
+              <ProtectedRoute isSignedIn={authentication.loggedIn}>
                 <Tips />
               </ProtectedRoute>
             }
@@ -36,7 +36,7 @@ const App = () => {
           <Route
             path="/home"
             element={
-              <ProtectedRoute isSignedIn={authenticated.loggedIn}>
+              <ProtectedRoute isSignedIn={authentication.loggedIn}>
                 <Home />
               </ProtectedRoute>
             }
