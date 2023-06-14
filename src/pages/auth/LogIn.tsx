@@ -37,7 +37,6 @@ const LogIn = () => {
       .catch((error) => {
         console.error(error);
         setError(true);
-        // alert("Invalid credentials. Please try again.");
       });
   };
 
@@ -46,21 +45,20 @@ const LogIn = () => {
     signInWithPopup(auth, provider)
       .then((userCredentials) => {
         const { user } = userCredentials;
-        console.log("User has a display name:", user.displayName);
         const { displayName } = user;
         const username = displayName?.substring(0, displayName.indexOf(" "));
-        console.log("username", username);
+
         const payload = {
           loggedIn: true,
           user: username,
         };
+
         dispatch(authenticated(payload));
         navigate("/home");
       })
       .catch((error) => {
         console.error(error);
         setError(true);
-        alert("Invalid credentials. Please try again.");
       });
   };
 
