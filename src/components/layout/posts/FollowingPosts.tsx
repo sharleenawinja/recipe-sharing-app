@@ -6,9 +6,9 @@ import {
   BiUser,
 } from "react-icons/bi";
 
-const Postcard = () => {
+const FollowingPosts = () => {
   return (
-    <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3 sm:w-full">
       <div className="flex items-center space-x-4">
         <BiUser className="text-gray-500 text-3xl" />
         <div>
@@ -25,18 +25,8 @@ const Postcard = () => {
         />
       </div>
 
-      <div className="flex items-center mt-4">
-        <div className="flex items-center space-x-2">
-          <BiCommentDetail className="text-gray-500" />
-          <p className="text-sm text-gray-500">comments Comments</p>
-        </div>
-        <div className="flex items-center space-x-2 ml-4">
-          <BiLike className="text-gray-500" />
-          <p className="text-sm text-gray-500">likes Likes</p>
-        </div>
-      </div>
-      <div className="flex items-center mt-4 space-x-4">
-        <button className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg">
+      <div className="flex items-center mt-4 flex-wrap space-x-2 space-y-2">
+        <button className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg mt-2 ml-2">
           <BiLike className="text-white" />
           <span>Like</span>
         </button>
@@ -57,4 +47,4 @@ const Postcard = () => {
   );
 };
 
-export default Postcard;
+export default FollowingPosts;
