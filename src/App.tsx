@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Tips from "./components/Tips-Tricks/tips.component";
 import LogIn from "./pages/auth/LogIn";
 import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Home/Home";
@@ -25,14 +24,6 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
 
           {/* private routes */}
-          <Route
-            path="/tips"
-            element={
-              <ProtectedRoute isSignedIn={authentication.loggedIn}>
-                <Tips />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/home"
             element={

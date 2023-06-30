@@ -1,4 +1,4 @@
-import Navbar from "../../components/layout/Navbar.component";
+import Navbar from "../../components/layout/navbar/Navbar.component";
 import FollowingPosts from "../../components/layout/posts/FollowingPosts";
 import NewPost from "../../components/layout/posts/NewPost";
 import RecommendedPosts from "../../components/layout/posts/RecommendedPosts";

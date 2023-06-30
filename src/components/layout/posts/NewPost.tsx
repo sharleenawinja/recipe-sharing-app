@@ -1,11 +1,5 @@
 import { AiOutlineFileAdd } from "react-icons/ai";
-import {
-  BiCalendarEvent,
-  BiImage,
-  BiPencil,
-  BiUser,
-  BiVideo,
-} from "react-icons/bi";
+import { BiCalendarEvent, BiImage, BiPencil, BiVideo } from "react-icons/bi";
 
 const NewPost = () => {
   return (

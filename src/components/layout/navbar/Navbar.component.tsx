@@ -10,9 +10,9 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
-import { auth } from "../../../firebase.config";
+import { auth } from "../../../../firebase.config";
 import { useNavigate } from "react-router-dom";
-import { loggedOut } from "../../redux/authentication";
+import { loggedOut } from "../../../redux/authentication";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

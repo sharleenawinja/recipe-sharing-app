@@ -90,7 +90,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen border-4 border-rose-600">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
