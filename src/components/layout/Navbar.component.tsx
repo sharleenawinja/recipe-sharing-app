@@ -37,24 +37,26 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full border-b-2 border-gray-200">
-        <div className="bg-white h-16 items-center mx-auto px-4 flex space-x-4 lg:space-x-80">
-          <div className="h-16 w-28 font-bold text-xs uppercase tracking-wide text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md flex justify-center items-center">
+        <div className="bg-white h-16 items-center mx-auto px-4 flex space-x-1 md:space-x-2 lg:space-x-8">
+          <div className="flex-shrink-0 h-16 w-20 ml-0 md:w-30 lg:w-40 font-bold text-xs uppercase tracking-wide text-center p-2 bg-white border-2 border-black rounded-2xl shadow-md flex justify-center items-center">
             <h1>
               <span>yummy yummy</span>{" "}
               <span className="hidden lg:block">in my tummy</span>
             </h1>
           </div>
 
-          <div className="block ml-1 xl:ml-40 relative max-w-xs">
-            <div className="flex items-center ">
-              <BiSearchAlt className="text-black  absolute left-3 top-2.5 h-5 w-5" />
+          <div className="block ml-1 xl:ml-10 relative flex-grow">
+            <button
+              className="flex items-center "
+              onClick={() => setIsModalOpen(true)}
+            >
+              <BiSearchAlt className="text-black absolute left-3 top-2.5 h-5 w-5" />
               <input
                 placeholder="Search..."
                 type="search"
                 className="border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm w-full rounded-lg pl-10 pr-3 py-2"
-                onClick={() => setIsModalOpen(true)}
               />
-            </div>
+            </button>
           </div>
           {isModalOpen && (
             <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
@@ -80,24 +82,24 @@ const Navbar = () => {
             </div>
           )}
 
-          <div className="md:space-x-10 justify-end items-center ml-auto flex space-x-6 sm:mr-6 md:mr-10">
-            <div className="justify-center items-center flex flex-col relative">
+          <div className="md:space-x-10 justify-end items-center ml-auto flex space-x-3 sm:mr-6 md:mr-10">
+            <div className="justify-center items-center flex flex-col">
               <BiHomeCircle className="h-9 w-7" />
               <p className="hidden md:block">Home</p>
             </div>
-            <div className="justify-center items-center flex flex-col relative">
+            <div className="justify-center items-center flex flex-col">
               <TbFriends className="h-9 w-7" />
               <p className="hidden md:block">Allies</p>
             </div>
-            <div className="justify-center items-center flex flex-col relative">
+            <div className="justify-center items-center flex flex-col">
               <AiOutlineMessage className="h-9 w-7" />
               <p className="hidden md:block">Messages</p>
             </div>
-            <div className="justify-center items-center flex flex-col relative">
+            <div className="justify-center items-center flex flex-col">
               <BiBell className="h-9 w-7" />
               <p className="hidden md:block">Notifications</p>
             </div>
-            <div className="justify-center items-center flex flex-col relative">
+            <div className="justify-center items-center flex flex-col">
               {authentication.profilePhoto ? (
                 <div className="h-8 w-8 overflow-hidden rounded-full mt-1">
                   <img
@@ -115,11 +117,11 @@ const Navbar = () => {
               </p>
             </div>
             <button
-              className="justify-center items-center flex flex-col relative"
+              className="justify-center items-center flex flex-col"
               onClick={handleLogOut}
             >
               <MdLogout className="h-9 w-7" />
-              <p className="hidden lg:block">Log Out</p>
+              <p className="hidden xl:block">Log Out</p>
             </button>
           </div>
         </div>

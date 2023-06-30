@@ -1,50 +1,25 @@
-import {
-  BiCalendarEvent,
-  BiImage,
-  BiPencil,
-  BiUser,
-  BiVideo,
-} from "react-icons/bi";
 import Navbar from "../../components/layout/Navbar.component";
-import Postcard from "../../components/postcard/Postcard";
+import FollowingPosts from "../../components/layout/posts/FollowingPosts";
+import NewPost from "../../components/layout/posts/NewPost";
+import RecommendedPosts from "../../components/layout/posts/RecommendedPosts";
 
 const Home = () => {
   return (
-    <div className="h-screen flex flex-col">
-      <div>
-        <Navbar />
-      </div>
-      <div className="flex flex-grow">
-        <div className="bg-indigo-300 flex-grow flex flex-col space-y-4">
-          <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3">
-            <div className="flex items-center space-x-4">
-              <BiUser className="text-gray-500 text-3xl" />
-              <input
-                type="text"
-                placeholder="Start a post..."
-                className="flex-grow border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 px-4 py-2 rounded-lg text-sm"
-              />
-            </div>
-            <div className="flex items-center mt-4">
-              <div className="flex items-center space-x-2">
-                <BiImage className="text-gray-500" />
-                <p className="text-sm text-gray-500">Photo</p>
-              </div>
-              <div className="flex items-center space-x-2 ml-4">
-                <BiVideo className="text-gray-500" />
-                <p className="text-sm text-gray-500">Video</p>
-              </div>
-              <div className="flex items-center space-x-2 ml-4">
-                <BiCalendarEvent className="text-gray-500" />
-                <p className="text-sm text-gray-500">Event</p>
-              </div>
-              <div className="flex items-center space-x-2 ml-4">
-                <BiPencil className="text-gray-500" />
-                <p className="text-sm text-gray-500">Write an article</p>
-              </div>
-            </div>
+    <div className="min-h-screen border-4 border-rose-600">
+      <div className="flex flex-col min-h-screen">
+        <div className="w-full mx-auto">
+          <Navbar />
+        </div>
+        <div className="flex flex-grow flex-col md:flex-row w-full mx-auto bg-gray-200 space-x-16">
+          <div className="w-3/4 md:w-1/4 ml-16 md:ml-7">
+            <NewPost />
           </div>
-          <Postcard />
+          <div className="w-3/4 md:w-2/5">
+            <FollowingPosts />
+          </div>
+          <div className="w-3/4 md:w-1/4">
+            <RecommendedPosts />
+          </div>
         </div>
       </div>
     </div>
