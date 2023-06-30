@@ -23,6 +23,7 @@ const LogIn = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
+        console.log("credentials", userCredentials);
         const { user } = userCredentials;
         const { email } = user;
         const username = email?.substring(0, email.indexOf("@"));
@@ -56,12 +57,15 @@ const LogIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredentials) => {
+        console.log("user credentials", userCredentials);
         const { user } = userCredentials;
-        const { displayName } = user;
+        const { displayName, photoURL } = user;
+        console.log("url", photoURL);
         const username = displayName?.substring(0, displayName.indexOf(" "));
 
         const payload = {
           user: username,
+          photoURL: photoURL,
         };
 
         dispatch(authenticated(payload));

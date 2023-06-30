@@ -4,17 +4,20 @@ export const authenticationDetailsSlice = createSlice({
   name: "authenticationDetails",
   initialState: {
     loggedIn: false,
-    user: "User",
+    user: "",
+    profilePhoto: "",
   },
   reducers: {
     authenticated: (state, action) => {
-      const { user } = action.payload;
+      const { user, photoURL } = action.payload;
       state.loggedIn = true;
       state.user = user;
+      state.profilePhoto = photoURL;
     },
     loggedOut: (state) => {
       state.loggedIn = false;
       state.user = "User";
+      state.profilePhoto = "";
     },
   },
 });

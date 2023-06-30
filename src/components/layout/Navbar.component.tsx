@@ -98,7 +98,18 @@ const Navbar = () => {
               <p className="hidden md:block">Notifications</p>
             </div>
             <div className="justify-center items-center flex flex-col relative">
-              <BiUserCircle className="h-9 w-9 rounded-full" />
+              {authentication.profilePhoto ? (
+                <div className="h-8 w-8 overflow-hidden rounded-full mt-1">
+                  <img
+                    src={authentication.profilePhoto}
+                    alt="Profile Photo"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              ) : (
+                <BiUserCircle className="h-9 w-9 rounded-full" />
+              )}
+
               <p className="hidden md:block">
                 {authentication.user ? authentication.user : "User"}
               </p>
