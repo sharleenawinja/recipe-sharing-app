@@ -10,7 +10,9 @@ const FollowingPosts = () => {
   return (
     <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3 sm:w-full">
       <div className="flex items-center space-x-4">
-        <BiUser className="text-gray-500 text-3xl" />
+        <button>
+          <BiUser className="text-gray-500 text-3xl" />
+        </button>
         <div>
           <p className="text-sm font-bold">user</p>
           <p className="text-xs text-gray-500">date</p>
