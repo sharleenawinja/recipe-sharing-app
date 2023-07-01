@@ -1,7 +1,7 @@
-import Navbar from "../../components/layout/navbar/Navbar.component";
-import FollowingPosts from "../../components/layout/posts/FollowingPosts";
-import NewPost from "../../components/layout/posts/NewPost";
-import RecommendedPosts from "../../components/layout/posts/RecommendedPosts";
+import Navbar from "../../layout/navbar/Navbar.component";
+import FollowingPosts from "../../layout/posts/FollowingPosts";
+import NewPost from "../../layout/posts/NewPost";
+import RecommendedPosts from "../../layout/posts/RecommendedPosts";
 
 const Home = () => {
   return (

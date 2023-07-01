@@ -4,6 +4,7 @@ import {
   BiSearchAlt,
   BiUserCircle,
 } from "react-icons/bi";
+import { BsSave2 } from "react-icons/bs";
 import { MdLogout } from "react-icons/md";
 import { TbFriends } from "react-icons/tb";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -94,6 +95,10 @@ const Navbar = () => {
             <div className="justify-center items-center flex flex-col">
               <AiOutlineMessage className="h-9 w-7" />
               <p className="hidden md:block">Messages</p>
+            </div>
+            <div className="justify-center items-center flex flex-col">
+              <BsSave2 className="h-9 w-5" />
+              <p className="hidden md:block">Saved</p>
             </div>
             <div className="justify-center items-center flex flex-col">
               <BiBell className="h-9 w-7" />

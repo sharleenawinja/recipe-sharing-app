@@ -4,9 +4,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import LogIn from "./pages/auth/LogIn";
-import SignUp from "./pages/auth/SignUp";
-import Home from "./pages/Home/Home";
+import LogIn from "./components/pages/auth/LogIn";
+import SignUp from "./components/pages/auth/SignUp";
+import Home from "./components/pages/Home/Home";
 import ProtectedRoute from "./ProtectedRoutes";
 import { useSelector } from "react-redux";
 

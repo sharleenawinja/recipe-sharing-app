@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase.config";
+import { auth } from "../../../../firebase.config";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { authenticated } from "../../redux/authentication";
-import ErrorToast from "../../components/layout/toasts/ErrorToast";
+import { authenticated } from "../../../redux/authentication";
+import ErrorToast from "../../layout/toasts/ErrorToast";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
