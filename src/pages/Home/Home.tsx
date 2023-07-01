@@ -10,16 +10,28 @@ const Home = () => {
         <div className="w-full mx-auto">
           <Navbar />
         </div>
-        <div className="flex flex-grow flex-row w-full mx-auto bg-gray-200 space-x-4 md:space-x-10">
-          <div className="flex flex-col md:flex-row w-1/2 md:w-2/3 md:space-x-28 ml-2 md:ml-4">
-            <div className="w-3/4 md:w-1/3 md:ml-7">
-              <NewPost />
+        <div className="flex flex-grow flex-row w-full mx-auto bg-gray-200 space-x-4 md:space-x-4 lg:space-x-8 xl:space-x-10">
+          <div className="flex flex-col items-center block md:hidden">
+            <div className="flex flex-row justify-center space-x-6">
+              <div className="w-5/12">
+                <NewPost />
+              </div>
+              <div className="w-5/12">
+                <RecommendedPosts />
+              </div>
             </div>
-            <div className="w-11/12 md:w-1/2 ">
+            <div className="w-11/12">
               <FollowingPosts />
             </div>
           </div>
-          <div className="w-2/5 md:w-1/4">
+          <div className="w-1/4 md:ml-2 hidden md:block">
+            <NewPost />
+          </div>
+          <div className="w-2/5 border-2 hidden md:block">
+            <FollowingPosts />
+          </div>
+
+          <div className="w-1/4 border-2 hidden md:block">
             <RecommendedPosts />
           </div>
         </div>
