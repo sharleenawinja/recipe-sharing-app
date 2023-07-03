@@ -1,4 +1,12 @@
 import { useState } from "react";
+import { storage } from "../../../../firebase.config";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { v4 } from "uuid";
 import { AiOutlineComment, AiOutlineFileAdd } from "react-icons/ai";
 import {
   BiCalendarEvent,
@@ -10,6 +18,7 @@ import {
 } from "react-icons/bi";
 import { BsUpload } from "react-icons/bs";
 import ReactPlayer from "react-player";
+import { useSelector } from "react-redux";
 
 const NewPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +26,10 @@ const NewPost = () => {
   const [displayArea, setDisplayArea] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [videoLink, setVideoLink] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { authentication } = useSelector((state: any) => state);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -37,7 +50,23 @@ const NewPost = () => {
     }
   };
 
+  const handleImageUpload = async (file: File) => {
+    try {
+      // if (selectedImage === null) return;
+      setLoading(true);
+      const imageRef = ref(storage, `images/${file.name + v4()}`);
+      uploadBytes(imageRef, file).then(() => {
+        alert("image uploaded");
+      });
+    } catch (error) {
+      console.error("error while uploading image", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const isButtonDisabled = message.trim().length === 0;
+
   return (
     <>
       <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3">
@@ -86,11 +115,21 @@ const NewPost = () => {
                   </button>
                 </div>
                 <div className="flex items-center space-x-2 mt-4">
+                  {authentication.profilePhoto ? (
+                    <div className="h-8 w-8 overflow-hidden rounded-full mt-1">
+                      <img
+                        src={authentication.profilePhoto}
+                        alt="Profile Photo"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ) : (
+                    <BiUserCircle className="h-9 w-9 rounded-full" />
+                  )}
                   <div>
-                    <BiUserCircle className="text-gray-500 text-3xl" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold">user</p>
+                    <p className="text-sm font-bold">
+                      {authentication.user ? authentication.user : "User"}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-4">
@@ -161,6 +200,7 @@ const NewPost = () => {
                       isButtonDisabled ? "opacity-80 cursor-not-allowed" : ""
                     }`}
                     disabled={isButtonDisabled}
+                    onClick={() => handleImageUpload(selectedImage as File)}
                   >
                     <BsUpload /> <span>Post</span>
                   </button>
