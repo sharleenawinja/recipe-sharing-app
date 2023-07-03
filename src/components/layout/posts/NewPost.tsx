@@ -9,11 +9,13 @@ import {
   BiXCircle,
 } from "react-icons/bi";
 import { BsUpload } from "react-icons/bs";
+import ReactPlayer from "react-player";
 
 const NewPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [videoLink, setVideoLink] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -61,7 +63,7 @@ const NewPost = () => {
               <div
                 className={`bg-white rounded-lg shadow-md p-6 w-2/5 ${
                   selectedImage ? "h-2/3" : "h-1/2"
-                }`}
+                } ${videoLink ? "h-5/6" : "h-1/2"}`}
               >
                 <div className="flex items-center justify-between">
                   <h1 className="text-xl font-bold">Create a Post</h1>
@@ -103,6 +105,18 @@ const NewPost = () => {
                       className="object-contain h-52 w-full mt-2"
                       alt="Selected Image"
                     />
+                  )}
+                </div>
+                <div className="mt-4 flex flex-col">
+                  <label htmlFor="file">Add a video link</label>
+                  <input
+                    type="text"
+                    placeholder="add video link here..."
+                    value={videoLink}
+                    onChange={(e) => setVideoLink(e.target.value)}
+                  />
+                  {videoLink && (
+                    <ReactPlayer className="h-40 w-full mt-2" url={videoLink} />
                   )}
                 </div>
                 <div className="flex flex-wrap items-center mt-4 space-x-96 space-y-2">
