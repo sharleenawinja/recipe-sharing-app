@@ -13,9 +13,15 @@ import { BsUpload } from "react-icons/bs";
 const NewPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    setSelectedImage(file);
   };
 
   const isButtonDisabled = message.trim().length === 0;
@@ -52,7 +58,11 @@ const NewPost = () => {
         <div className="w-full">
           <div className="fixed inset-0 flex justify-center bg-gray-800 bg-opacity-75">
             <div className="flex justify-center items-center h-screen w-full">
-              <div className="bg-white rounded-lg shadow-md p-6 w-2/5 h-1/2">
+              <div
+                className={`bg-white rounded-lg shadow-md p-6 w-2/5 ${
+                  selectedImage ? "h-2/3" : "h-1/2"
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <h1 className="text-xl font-bold">Create a Post</h1>
                   <button
@@ -73,10 +83,27 @@ const NewPost = () => {
                 <div className="mt-4">
                   <textarea
                     id="message"
-                    className="block p-2.5 w-full h-56 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+                    className="block p-2.5 w-full h-36 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                     placeholder="Write your thoughts here..."
                     onChange={handleInputChange}
                   ></textarea>
+                </div>
+                <div className="mt-4 flex flex-col">
+                  <label htmlFor="file">Select an image to share</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="image"
+                    id="file"
+                    onChange={handleImageChange}
+                  />
+                  {selectedImage && (
+                    <img
+                      src={URL.createObjectURL(selectedImage)}
+                      className="object-contain h-52 w-full mt-2"
+                      alt="Selected Image"
+                    />
+                  )}
                 </div>
                 <div className="flex flex-wrap items-center mt-4 space-x-96 space-y-2">
                   <div className="flex flex-wrap items-center space-x-3 space-y-2">
