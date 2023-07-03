@@ -12,6 +12,13 @@ import { BsUpload } from "react-icons/bs";
 
 const NewPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value);
+  };
+
+  const isButtonDisabled = message.trim().length === 0;
   return (
     <>
       <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-3">
@@ -68,6 +75,7 @@ const NewPost = () => {
                     id="message"
                     className="block p-2.5 w-full h-56 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                     placeholder="Write your thoughts here..."
+                    onChange={handleInputChange}
                   ></textarea>
                 </div>
                 <div className="flex flex-wrap items-center mt-4 space-x-96 space-y-2">
@@ -82,9 +90,14 @@ const NewPost = () => {
                       <AiOutlineComment /> <span>Anyone</span>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
+                  <button
+                    className={`flex items-center space-x-2 bg-blue-600 rounded p-1 hover:bg-blue-800 ${
+                      isButtonDisabled ? "opacity-80 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isButtonDisabled}
+                  >
                     <BsUpload /> <span>Post</span>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
