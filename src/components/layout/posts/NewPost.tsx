@@ -14,6 +14,7 @@ import ReactPlayer from "react-player";
 const NewPost = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [displayArea, setDisplayArea] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [videoLink, setVideoLink] = useState("");
 
@@ -24,6 +25,16 @@ const NewPost = () => {
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     setSelectedImage(file);
+  };
+
+  const switchDisplayArea = (area: string) => {
+    if (area === "image") {
+      setVideoLink("");
+      setDisplayArea("image");
+    } else if (area === "video") {
+      setSelectedImage(null);
+      setDisplayArea("video");
+    }
   };
 
   const isButtonDisabled = message.trim().length === 0;
@@ -90,43 +101,57 @@ const NewPost = () => {
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
-                <div className="mt-4 flex flex-col">
-                  <label htmlFor="file">Select an image to share</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    name="image"
-                    id="file"
-                    onChange={handleImageChange}
-                  />
-                  {selectedImage && (
-                    <img
-                      src={URL.createObjectURL(selectedImage)}
-                      className="object-contain h-52 w-full mt-2"
-                      alt="Selected Image"
+                {displayArea === "image" && (
+                  <div className="mt-4 flex flex-col">
+                    <label htmlFor="file">Select an image to share</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="image"
+                      id="file"
+                      onChange={handleImageChange}
                     />
-                  )}
-                </div>
-                <div className="mt-4 flex flex-col">
-                  <label htmlFor="file">Add a video link</label>
-                  <input
-                    type="text"
-                    placeholder="add video link here..."
-                    value={videoLink}
-                    onChange={(e) => setVideoLink(e.target.value)}
-                  />
-                  {videoLink && (
-                    <ReactPlayer className="h-40 w-full mt-2" url={videoLink} />
-                  )}
-                </div>
+                    {selectedImage && (
+                      <img
+                        src={URL.createObjectURL(selectedImage)}
+                        className="object-contain h-52 w-full mt-2"
+                        alt="Selected Image"
+                      />
+                    )}
+                  </div>
+                )}
+                {displayArea === "video" && (
+                  <div className="mt-4 flex flex-col">
+                    <label htmlFor="file">Add a video link</label>
+                    <input
+                      className="bg-gray-50 rounded-lg border border-gray-300 pl-2"
+                      type="text"
+                      placeholder="Add video link here..."
+                      value={videoLink}
+                      onChange={(e) => setVideoLink(e.target.value)}
+                    />
+                    {videoLink && (
+                      <ReactPlayer
+                        className="h-40 w-full mt-2"
+                        url={videoLink}
+                      />
+                    )}
+                  </div>
+                )}
                 <div className="flex flex-wrap items-center mt-4 space-x-96 space-y-2">
                   <div className="flex flex-wrap items-center space-x-3 space-y-2">
-                    <div className="flex items-center ml-3 mt-2">
+                    <button
+                      className="flex items-center ml-3 mt-2"
+                      onClick={() => switchDisplayArea("image")}
+                    >
                       <BiImage /> <span>Photo</span>
-                    </div>
-                    <div className="flex items-center">
+                    </button>
+                    <button
+                      className="flex items-center"
+                      onClick={() => switchDisplayArea("video")}
+                    >
                       <BiVideo /> <span>Video</span>
-                    </div>
+                    </button>
                     <div className="flex items-center">
                       <AiOutlineComment /> <span>Anyone</span>
                     </div>
